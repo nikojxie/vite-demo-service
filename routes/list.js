@@ -20,4 +20,23 @@ router.get('/all', function (req,res,next) {
     });
 })
 
+router.get('/page/:pageNum', function (req,res,next) {
+    const connection = db.start()
+    const pageNum = req.params.pageNum
+    const startNum = (pageNum - 1) * 10
+    const pageSize = 10
+    const dataSql = `SELECT * FROM blog_article ORDER BY created_time desc limit ${startNum}, ${pageSize}`;
+    const totalRowsSql = `SELECT count(1) FROM blog_article`
+    let str = '';
+    connection.query(dataSql, function (err,list) {
+        connection.query(totalRowsSql, function (err,totalRows) {
+            str = {
+                totalRows: Object.values(totalRows[0])[0], list
+            }
+            res.send(str);  //服务器响应请求
+            connection.end();
+        })
+    });
+})
+
 module.exports = router;
