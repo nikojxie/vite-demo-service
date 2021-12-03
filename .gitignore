@@ -1,2 +1,6 @@
 # Project exclude paths
 /node_modules/
+/.idea/.gitignore
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/vite-demo-service.iml
