@@ -14,7 +14,7 @@ router.get('/:id', function (req,res,next) {
             // console.log('[SELECT ERROR]:',err.message);
             str = '[SELECT ERROR]:' + err.message
         } else if(!(result && result.length)) {
-            str = '[SELECT ERROR]:' + '未能查询到次id的文章'
+            str = '[SELECT ERROR]:' + '未能查询到此id的文章'
         } else{
             str = result[0]; //数据库查询结果返回到result中
         }
