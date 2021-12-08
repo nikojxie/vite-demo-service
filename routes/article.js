@@ -1,8 +1,6 @@
 const express = require('express');   //引入express模块
 const router = express.Router();
-const mysql = require('mysql');
 const db = require("../utils/db");     //引入mysql模块
-const app = express();        //创建express的实例
 
 router.get('/:id', function (req,res,next) {
     const connection = db.start()

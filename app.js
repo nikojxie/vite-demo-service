@@ -3,7 +3,9 @@ const app = express();        //创建express的实例
 
 const list = require('./routes/list')
 const article = require('./routes/article')
+const auth = require('./routes/auth')
 
+app.use('/auth', list); // 列表查询
 app.use('/list', list); // 列表查询
 app.use('/article', article); // 文章
 
