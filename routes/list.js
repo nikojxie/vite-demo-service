@@ -5,7 +5,7 @@ const db = require('../utils/db')
 // 获得全部的文章数据
 router.get('/all', function (req,res,next) {
     const connection = db.start()
-    const sql = 'SELECT * FROM blog_article ORDER BY created_time desc';
+    const sql = 'SELECT * FROM blog_article ORDER BY pub_time desc';
     let str = '';
     connection.query(sql, function (err,result) {
         if(err){
@@ -22,7 +22,7 @@ router.get('/all', function (req,res,next) {
 // 获得全部的文章数据归档
 router.get('/file', function (req,res,next) {
     const connection = db.start()
-    const sql = `SELECT id,title,created_time,DATE_FORMAT(created_time,'%Y-%c') as created_month from blog_article ORDER BY created_time desc`;
+    const sql = `SELECT id,title,pub_time,DATE_FORMAT(pub_time,'%Y-%c') as created_month from blog_article ORDER BY pub_time desc`;
     let str = '';
     connection.query(sql, function (err,result) {
         if(err){
@@ -53,7 +53,7 @@ router.get('/page/:pageNum', function (req,res,next) {
     const pageNum = req.params.pageNum
     const startNum = (pageNum - 1) * 10
     const pageSize = 10
-    const dataSql = `SELECT * FROM blog_article ORDER BY created_time desc limit ${startNum}, ${pageSize}`;
+    const dataSql = `SELECT * FROM blog_article ORDER BY pub_time desc limit ${startNum}, ${pageSize}`;
     const totalRowsSql = `SELECT count(1) FROM blog_article`
     let str = '';
     connection.query(dataSql, function (err,list) {
