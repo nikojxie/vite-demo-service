@@ -1,11 +1,15 @@
 const express = require('express');   //引入express模块
 const app = express();        //创建express的实例
+const session = require('express-session')
+const cookieParser = require('cookie-parser');
 
 const list = require('./routes/list')
 const article = require('./routes/article')
 const auth = require('./routes/auth')
 
-app.use('/auth', list); // 列表查询
+app.use(cookieParser())
+
+app.use('/auth', auth); // 权限有关接口
 app.use('/list', list); // 列表查询
 app.use('/article', article); // 文章
 
