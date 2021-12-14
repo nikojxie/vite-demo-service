@@ -10,7 +10,6 @@ const getDetail = (id) => {
 }
 
 router.get('/:id', function (req,res,next) {
-    // res.cookie("token","123123123",{domain: 'localhost', path: '/', maxAge: 24*60*60*1000 ,httpOnly:true})
     const id = req.params.id
     const result = getDetail(id)
     return result.then(data => {
