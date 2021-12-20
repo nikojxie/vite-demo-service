@@ -1,7 +1,7 @@
 const {exec} = require("../db/mysql");
 const xss = require('xss')
 const getDetail = (id) => {
-    const sql = `SELECT * FROM blog_article where id = ${id}`;
+    const sql = `SELECT a.id as id,title,body,pub_time,views,username FROM blog_article a LEFT JOIN accounts_bloguser u ON a.author_id = u.id where a.id = ${id}`;
     return exec(sql).then(rows => {
         return rows[0]
     })
