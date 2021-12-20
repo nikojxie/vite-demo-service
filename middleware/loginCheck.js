@@ -2,6 +2,7 @@ const { ErrorModel } = require('../model')
 
 module.exports = (req, res, next) => {
     if (req.session.username) {
+        // 登陆成功，需执行 next()，以继续执行下一步
         next()
         return
     }
